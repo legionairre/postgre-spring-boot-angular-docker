@@ -1,1 +1,3 @@
-# postgre-spring-boot-angular-docker
+# Postgre & Spring Boot & Angular with Docker
+## Run all project
+`docker-compose up -d`
