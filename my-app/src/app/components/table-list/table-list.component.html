@@ -1,0 +1,55 @@
+<div class="list row">
+  <div class="col-md-8">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by title"
+        [(ngModel)]="tableName"
+      />
+      <div class="input-group-apped">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchTitle()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h4>Table List</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let table of tables; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveTable(table, i)"
+      >
+        {{ table.tableName }}
+      </li>
+    </ul>
+
+    <button class="m-3 btn btn-sm btn-danger" (click)="removeAllTables()">
+      Remove All
+    </button>
+  </div>
+
+  <div class="col-md-6">
+    <div *ngIf="currentTable">
+      <h4>Table</h4>
+      <div>
+        <label><strong>Title:</strong></label> {{ currentTable.tableName }}
+      </div>
+      <a class="badge badge-warning" routerLink="/tables/{{currentTable.id}}">
+        Edit
+      </a>
+    </div>
+
+    <div *ngIf="!currentTable">
+      <br />
+      <p>Please click on a Table...</p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,102 @@
+<div class="container">
+  <div *ngIf="tableId">
+    <form [formGroup]="tableForm" (ngSubmit)="onSubmit()">
+
+      <p>
+        <label for="tableName">Table Name:</label>
+        <input type="text" id="tableName" name="tableName" formControlName="tableName" class="form-control">
+      </p>
+
+      <table class="table table-bordered" formArrayName="columns">
+        <tr>
+          <th>Add Multiple Column:</th>
+          <th style="text-align: center;margin: 0 auto;" width="150px">
+            <button type="button" (click)="addColumn()" class="btn btn-primary">Add New Column</button>
+          </th>
+        </tr>
+        <tr *ngFor="let column of columns().controls; let i=index" [formGroupName]="i">
+          <td>
+            {{i + 1}}. Column Name :
+            <input type="text" formControlName="column" class="form-control">
+          </td>
+          <td style="text-align: center;margin: 0 auto;">
+            <button (click)="removeColumn(i)" class="btn btn-danger">Remove</button>
+          </td>
+        </tr>
+      </table>
+
+      <button type="submit" class="btn btn-success">Submit New Table</button>
+
+    </form>
+  </div>
+    <div *ngIf="!tableId">
+      <br />
+      <p>Cannot access this Table...</p>
+    </div>
+</div>
+
+<!--<div style="width: 400px; margin: auto">-->
+<!--  <div *ngIf="currentTable" class="edit-form">-->
+<!--    <h4>Table</h4>-->
+<!--    <form>-->
+<!--      <div class="form-group">-->
+<!--        <label for="title">Title</label>-->
+<!--        <input-->
+<!--          type="text"-->
+<!--          class="form-control"-->
+<!--          id="title"-->
+<!--          [(ngModel)]="currentTable.title"-->
+<!--          name="title"-->
+<!--        />-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label for="description">Description</label>-->
+<!--        <input-->
+<!--          type="text"-->
+<!--          class="form-control"-->
+<!--          id="description"-->
+<!--          [(ngModel)]="currentTable.description"-->
+<!--          name="description"-->
+<!--        />-->
+<!--      </div>-->
+<!--      <div class="form-group">-->
+<!--        <label><strong>Status:</strong></label>-->
+<!--        {{ currentTable.published ? "Published" : "Pending" }}-->
+<!--      </div>-->
+<!--    </form>-->
+
+<!--    <button-->
+<!--      class="badge badge-primary mr-2"-->
+<!--      *ngIf="currentTable.published"-->
+<!--      (click)="updateTable(false)"-->
+<!--    >-->
+<!--      UnPublish-->
+<!--    </button>-->
+<!--    <button-->
+<!--      class="badge badge-primary mr-2"-->
+<!--      *ngIf="!currentTable.published"-->
+<!--      (click)="updateTable(true)"-->
+<!--    >-->
+<!--      Publish-->
+<!--    </button>-->
+<!--    <button-->
+<!--      class="badge badge-danger mr-2"-->
+<!--      (click)="deleteTable()"-->
+<!--    >-->
+<!--      Delete-->
+<!--    </button>-->
+<!--    <button-->
+<!--      type="submit"-->
+<!--      class="badge badge-success"-->
+<!--      (click)="updateTable('update')"-->
+<!--    >-->
+<!--      Update-->
+<!--    </button>-->
+<!--    <p>{{message}}</p>-->
+<!--  </div>-->
+
+<!--  <div *ngIf="!currentTable">-->
+<!--    <br />-->
+<!--    <p>Cannot access this Table...</p>-->
+<!--  </div>-->
+<!--</div>-->
